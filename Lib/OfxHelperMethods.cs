@@ -55,7 +55,8 @@ namespace OfxSharpLib
             fixedNode.Load(new StringReader(node.OuterXml));
 
             var tempNode = fixedNode.SelectSingleNode(xpath);
-            return tempNode != null ? tempNode.FirstChild.Value : "";
+            //return tempNode != null ? tempNode.FirstChild.Value : "";
+            return tempNode?.FirstChild?.Value ?? "";
         }
     }
 }
