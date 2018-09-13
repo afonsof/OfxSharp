@@ -263,8 +263,8 @@ namespace OfxSharpLib
             if (header[3] != "SECURITY:NONE")
                 throw new OfxParseException("OFX security unsupported");
 
-            if (header[4] != "ENCODING:USASCII")
-                throw new OfxParseException("ASCII Format unsupported:" + header[4]);
+            if (header[4] != "ENCODING:USASCII" && header[4] != "ENCODING:UTF-8")
+                throw new OfxParseException("ENCODING unsupported:" + header[4]);
 
             if (header[5] != "CHARSET:1252")
                 throw new OfxParseException("Charecter set unsupported:" + header[5]);
