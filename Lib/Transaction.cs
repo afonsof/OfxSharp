@@ -46,7 +46,16 @@ namespace OfxSharpLib
 
       public Transaction(XmlNode node, string currency)
       {
-         TransType = GetTransactionType(node.GetValue("//TRNTYPE"));
+         var trntype = node.GetValue("//TRNTYPE");
+
+         if (!string.IsNullOrEmpty(trntype))
+         {
+           TransType = GetTransactionType(trntype);
+         }
+         else
+         {
+           TransType = OfxTransactionType.OTHER;
+         }
          Date = node.GetValue("//DTPOSTED").ToDate();
          TransactionInitializationDate = node.GetValue("//DTUSER").ToDate();
          FundAvaliabilityDate = node.GetValue("//DTAVAIL").ToDate();
