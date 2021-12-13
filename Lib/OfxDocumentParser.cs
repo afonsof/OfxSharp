@@ -54,7 +54,7 @@ namespace OfxSharpLib
             }
             else
             {
-                throw new OfxParseException("Currency not found");
+                ofx.Currency = "BRL"; // default :)
             }
 
             //Get sign on node from OFX file
@@ -256,7 +256,7 @@ namespace OfxSharpLib
 
             if (header[1] != "DATA:OFXSGML")
                 throw new OfxParseException("Data type unsupported: " + header[1] + ". OFXSGML required");
-
+            /*
             if (header[2] != "VERSION:102")
                 throw new OfxParseException("OFX version unsupported. " + header[2]);
 
@@ -273,7 +273,7 @@ namespace OfxSharpLib
                 throw new OfxParseException("Compression unsupported");
 
             if (header[7] != "OLDFILEUID:NONE")
-                throw new OfxParseException("OLDFILEUID incorrect");
+                throw new OfxParseException("OLDFILEUID incorrect");*/
         }
 
         #region Nested type: OFXSection

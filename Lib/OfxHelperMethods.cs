@@ -38,7 +38,8 @@ namespace OfxSharpLib
             }
             catch
             {
-                throw new OfxParseException("Unable to parse date");
+                return DateTime.MinValue;
+                //throw new OfxParseException("Unable to parse date");
             }
         }
 
@@ -55,7 +56,14 @@ namespace OfxSharpLib
             fixedNode.Load(new StringReader(node.OuterXml));
 
             var tempNode = fixedNode.SelectSingleNode(xpath);
-            return tempNode != null ? tempNode.FirstChild.Value : "";
+            try
+            {
+                return tempNode != null ? tempNode.FirstChild.Value : "";
+            }
+            catch { 
+                // Colocado pois se o nó estava vazio, levantava exceção - o Sicredi tem nós vazios
+                return "";
+            }
         }
     }
 }
