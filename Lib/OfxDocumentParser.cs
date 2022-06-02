@@ -96,10 +96,6 @@ namespace OfxSharpLib
             {
                 ofx.Balance = new Balance(ledgerNode, avaliableNode);
             }
-            else if(ofx.Account.BankId != "336") // If it is c6 bank, it may not have balance information
-            {
-                throw new OfxParseException("Balance information not found");
-            }
 
             return ofx;
         }
