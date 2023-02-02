@@ -266,7 +266,7 @@ namespace OfxSharpLib
             if (header[4] != "ENCODING:USASCII" && header[4] != "ENCODING:UTF-8")
                 throw new OfxParseException("ENCODING unsupported:" + header[4]);
 
-            if (header[5] != "CHARSET:1252")
+            if (header[5] != "CHARSET:1252" && header[5] != "CHARSET:NONE")
                 throw new OfxParseException("Charecter set unsupported:" + header[5]);
 
             if (header[6] != "COMPRESSION:NONE")
