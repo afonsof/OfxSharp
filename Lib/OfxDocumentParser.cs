@@ -274,30 +274,6 @@ namespace OfxSharpLib
                         throw new Exception($"The header {headerName}, cannot contain the {headerValue} value.\r\n\r\nPossible Values: {PossibleHeaders[headerName]}");
                 }
             }
-
-            //if (header[0] != "OFXHEADER:100")
-            //    throw new OfxParseException("Incorrect header format");
-
-            //if (header[1] != "DATA:OFXSGML")
-            //    throw new OfxParseException("Data type unsupported: " + header[1] + ". OFXSGML required");
-
-            //if (header[2] != "VERSION:102")
-            //    throw new OfxParseException("OFX version unsupported. " + header[2]);
-
-            //if (header[3] != "SECURITY:NONE")
-            //    throw new OfxParseException("OFX security unsupported");
-
-            //if (header[4] != "ENCODING:USASCII")
-            //    throw new OfxParseException("ASCII Format unsupported:" + header[4]);
-
-            //if (header[5] != "CHARSET:1252")
-            //    throw new OfxParseException("Charecter set unsupported:" + header[5]);
-
-            //if (header[6] != "COMPRESSION:NONE")
-            //    throw new OfxParseException("Compression unsupported");
-
-            //if (header[7] != "OLDFILEUID:NONE")
-            //    throw new OfxParseException("OLDFILEUID incorrect");
         }
 
         #region Nested type: OFXSection
