@@ -271,7 +271,7 @@ namespace OfxSharpLib
                 if (PossibleHeaders.ContainsKey(headerName))
                 {
                     if (!PossibleHeaders[headerName].Contains(headerValue))
-                        throw new Exception($"The header {headerName}, cannot contain the {headerValue} value.\r\n\r\nPossible Values: {PossibleHeaders[headerName]}");
+                        throw new OfxParseException($"The header {headerName}, cannot contain the {headerValue} value.\r\n\r\nPossible Values: {PossibleHeaders[headerName]}");
                 }
             }
         }
