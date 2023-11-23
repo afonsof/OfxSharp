@@ -31,7 +31,7 @@ namespace OfxSharpLib
          }
          else
          {
-            throw new OfxParseException("Ledger balance has not been set");
+             LedgerBalance = 0;
          }
 
          // ***** OFX files from my bank don't have the 'avaliableNode' node, so i manage a null situation
