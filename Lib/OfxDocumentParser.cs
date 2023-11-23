@@ -9,6 +9,18 @@ namespace OfxSharpLib
 {
     public class OfxDocumentParser
     {
+        private Dictionary<string, string> PossibleHeaders = new Dictionary<string, string>
+        {
+            { "OFXHEADER", "100" },
+            { "DATA", "OFXSGML" },
+            { "VERSION", "102" },
+            { "SECURITY", "NONE" },
+            { "ENCODING", "USASCII,UTF-8" },
+            { "CHARSET", "1252" },
+            { "COMPRESSION", "NONE" },
+            { "OLDFILEUID", "NONE" },
+        };
+
         public OfxDocument Import(Stream stream, Encoding encoding)
         {
             using (var reader = new StreamReader(stream, encoding))
@@ -251,29 +263,17 @@ namespace OfxSharpLib
         /// <param name="header">Header of OFX file in array</param>
         private void CheckHeader(string[] header)
         {
-            if (header[0] != "OFXHEADER:100")
-                throw new OfxParseException("Incorrect header format");
+            foreach (var item in header)
+            {
+                var headerName = item.Split(':')[0];
+                var headerValue = item.Split(':')[1];
 
-            if (header[1] != "DATA:OFXSGML")
-                throw new OfxParseException("Data type unsupported: " + header[1] + ". OFXSGML required");
-
-            if (header[2] != "VERSION:102")
-                throw new OfxParseException("OFX version unsupported. " + header[2]);
-
-            if (header[3] != "SECURITY:NONE")
-                throw new OfxParseException("OFX security unsupported");
-
-            if (header[4] != "ENCODING:USASCII")
-                throw new OfxParseException("ASCII Format unsupported:" + header[4]);
-
-            if (header[5] != "CHARSET:1252")
-                throw new OfxParseException("Charecter set unsupported:" + header[5]);
-
-            if (header[6] != "COMPRESSION:NONE")
-                throw new OfxParseException("Compression unsupported");
-
-            if (header[7] != "OLDFILEUID:NONE")
-                throw new OfxParseException("OLDFILEUID incorrect");
+                if (PossibleHeaders.ContainsKey(headerName))
+                {
+                    if (!PossibleHeaders[headerName].Contains(headerValue))
+                        throw new OfxParseException($"The header {headerName}, cannot contain the {headerValue} value.\r\n\r\nPossible Values: {PossibleHeaders[headerName]}");
+                }
+            }
         }
 
         #region Nested type: OFXSection
