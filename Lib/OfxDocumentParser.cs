@@ -16,7 +16,7 @@ namespace OfxSharpLib
             { "VERSION", "102" },
             { "SECURITY", "NONE" },
             { "ENCODING", "USASCII,UTF-8" },
-            { "CHARSET", "1252" },
+            { "CHARSET", "1252,NONE" },
             { "COMPRESSION", "NONE" },
             { "OLDFILEUID", "NONE" },
         };
